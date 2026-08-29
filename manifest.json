@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "注意力水母",
+  "version": "0.2.0",
+  "description": "让浏览中的注意力流向变得可见，不评价，只记录。",
+  "icons": {
+    "16": "assets/jellyfish-mascot-v1-128.png",
+    "32": "assets/jellyfish-mascot-v1-128.png",
+    "48": "assets/jellyfish-mascot-v1-128.png",
+    "128": "assets/jellyfish-mascot-v1-128.png"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "alarms",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.xiaohongshu.com/*",
+    "https://xiaohongshu.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_title": "显示或隐藏注意力水母",
+    "default_icon": "assets/jellyfish-mascot-v1-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.xiaohongshu.com/*",
+        "https://xiaohongshu.com/*"
+      ],
+      "js": ["src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "src/report.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*"],
+      "matches": ["https://www.xiaohongshu.com/*", "https://xiaohongshu.com/*"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>欢迎使用注意力水母</title>
+  <link rel="stylesheet" href="onboarding.css">
+</head>
+<body>
+  <main class="onboarding-shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="brand-line"><img src="../assets/jellyfish-mascot-v1-128.png" width="40" height="40" alt=""><span>注意力水母</span></div>
+        <p class="eyebrow">MAKE ATTENTION VISIBLE</p>
+        <h1>看见注意力，<br>不评价它。</h1>
+        <p class="lead">它不会提醒你专注，也不会判断你看了什么。它只把浏览中的主题、切换和节奏，变成一只安静的小水母。</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="https://www.xiaohongshu.com/explore" target="_blank" rel="noopener">打开小红书</a>
+          <a class="secondary-action" href="report.html">先看日报</a>
+        </div>
+      </div>
+      <div class="jelly-stage" aria-label="水母状态预览">
+        <div class="light-field one"></div><div class="light-field two"></div>
+        <button class="demo-jelly" type="button" aria-label="切换水母状态">
+          <img src="../assets/jellyfish-mascot-v1-512.png" alt="">
+        </button>
+        <div class="state-caption"><span id="state-name">平静流动</span><small id="state-copy">主题相近 · 切换平缓 · 浏览舒展</small></div>
+        <div class="state-tabs" aria-label="预览状态">
+          <button class="is-active" type="button" data-state="calm">平静</button>
+          <button type="button" data-state="wander">游移</button>
+          <button type="button" data-state="active">活跃</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="explain-grid">
+      <article><span class="number">01</span><h2>颜色</h2><p>主题越多元，水母从浅蓝逐渐走向蓝紫。颜色没有好坏，只是在映射差异。</p></article>
+      <article><span class="number">02</span><h2>漂浮</h2><p>主题切换越频繁，漂浮范围越大。它不会闪烁、警告或打断页面。</p></article>
+      <article><span class="number">03</span><h2>呼吸</h2><p>浏览越密集，呼吸和触手动作越快。点击水母，可以看最近15分钟轨迹。</p></article>
+    </section>
+
+    <section class="privacy-section">
+      <div><p class="eyebrow">LOCAL BY DESIGN</p><h2>你的浏览记忆，只停留在这台设备。</h2></div>
+      <div class="privacy-list">
+        <p><span></span>文章、问题和回答不上传</p>
+        <p><span></span>隐藏水母后仍然继续记录</p>
+        <p><span></span>所有记录7天后彻底删除</p>
+        <p><span></span>随时暂停或立即清除</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>打开网页版小红书并刷新页面，小水母会出现在右上角。</p>
+      <a href="https://www.xiaohongshu.com/explore" target="_blank" rel="noopener">开始观察注意力</a>
+    </footer>
+  </main>
+  <script src="onboarding.js"></script>
+</body>
+</html>

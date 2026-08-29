@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>注意力水母 · 日报</title>
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="report.html" aria-label="注意力水母日报首页">
+      <img src="../assets/jellyfish-mascot-v1-128.png" alt="" width="38" height="38">
+      <span>注意力水母</span>
+    </a>
+    <nav class="report-switcher" aria-label="报告类型">
+      <button class="switch-button is-active" type="button" data-mode="day">日报</button>
+      <button class="switch-button" type="button" data-mode="week">周报</button>
+    </nav>
+    <div class="top-actions">
+      <span class="local-badge"><span class="local-dot"></span>仅本地保存</span>
+      <button class="quiet-button" id="open-settings" type="button">隐私与设置</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro-grid">
+      <div class="date-block">
+        <p class="eyebrow" id="report-label">DAILY ATTENTION FLOW</p>
+        <div class="title-row">
+          <button class="date-nav" id="previous-period" type="button" aria-label="上一天">‹</button>
+          <div>
+            <h1 id="report-title">今天的注意力流向</h1>
+            <p id="report-date">正在读取本地记录…</p>
+          </div>
+          <button class="date-nav" id="next-period" type="button" aria-label="下一天">›</button>
+        </div>
+      </div>
+      <div class="summary-card" aria-live="polite">
+        <span class="summary-mark"></span>
+        <p id="neutral-summary">记录会在有效浏览后出现在这里。我们只描述变化，不评价它。</p>
+      </div>
+    </section>
+
+    <section class="metrics-grid" aria-label="浏览概览">
+      <article class="metric-card">
+        <span class="metric-label">有效浏览</span>
+        <strong class="metric-value" id="metric-time">0分钟</strong>
+        <span class="metric-note" id="metric-time-note">当前所选时段</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">经过主题</span>
+        <strong class="metric-value" id="metric-topics">0个</strong>
+        <span class="metric-note" id="metric-topic-note">等待记录</span>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">有效内容</span>
+        <strong class="metric-value" id="metric-articles">0篇</strong>
+        <span class="metric-note">停留或产生互动</span>
+      </article>
+      <article class="metric-card accent-card">
+        <span class="metric-label">自动删除</span>
+        <strong class="metric-value">7天</strong>
+        <span class="metric-note">标题、正文与对话一并删除</span>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel topic-panel">
+        <header class="panel-header">
+          <div>
+            <p class="panel-kicker">TIME BY TOPIC</p>
+            <h2>时间流向</h2>
+          </div>
+          <span class="panel-hint">颜色只用于区分主题</span>
+        </header>
+        <div class="topic-chart" id="topic-chart"></div>
+      </article>
+
+      <article class="panel change-panel">
+        <header class="panel-header">
+          <div>
+            <p class="panel-kicker">RECENT CHANGE</p>
+            <h2>与过去相比</h2>
+          </div>
+        </header>
+        <div id="change-content" class="change-content"></div>
+      </article>
+    </section>
+
+    <section class="articles-section">
+      <header class="articles-header">
+        <div>
+          <p class="panel-kicker">BROWSING MEMORY</p>
+          <h2>看过的内容</h2>
+        </div>
+        <label class="search-box">
+          <span class="search-glyph" aria-hidden="true"></span>
+          <input id="article-search" type="search" placeholder="搜索标题、Tag或正文" autocomplete="off">
+          <kbd>⌘ K</kbd>
+        </label>
+      </header>
+      <div class="filter-row" id="topic-filters"></div>
+      <div class="article-list" id="article-list"></div>
+    </section>
+  </main>
+
+  <button class="ai-launcher" id="ai-launcher" type="button" aria-expanded="false" aria-controls="ai-panel">
+    <span class="ai-orb" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="ai-launch-copy"><strong>浏览记忆助手</strong><small>在本地找回看过的内容</small></span>
+  </button>
+
+  <aside class="ai-panel" id="ai-panel" aria-label="浏览记忆助手" aria-hidden="true">
+    <header class="ai-header">
+      <div class="ai-identity">
+        <span class="ai-orb small" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div><strong>浏览记忆助手</strong><span><i class="model-dot"></i><span id="model-status">本地检索模式</span></span></div>
+      </div>
+      <button class="icon-button" id="close-ai" type="button" aria-label="关闭">×</button>
+    </header>
+    <div class="ai-conversation" id="ai-conversation">
+      <div class="message assistant-message">
+        <p>你可以问我最近7天看过的内容。搜索与回答都在这台设备上完成。</p>
+      </div>
+      <div class="suggestion-grid" id="ai-suggestions">
+        <button type="button">我今天看了什么？</button>
+        <button type="button">最近关注最多的主题</button>
+        <button type="button">帮我找看过的露营内容</button>
+      </div>
+    </div>
+    <form class="ai-composer" id="ai-form">
+      <textarea id="ai-input" rows="1" placeholder="问问最近看过的内容…" aria-label="输入问题"></textarea>
+      <button id="ai-submit" type="submit">发送</button>
+    </form>
+    <p class="ai-privacy">本地数据 · 7天后删除 · 不上传浏览内容</p>
+  </aside>
+
+  <dialog class="settings-dialog" id="settings-dialog">
+    <form method="dialog">
+      <header>
+        <div><p class="panel-kicker">PRIVACY & CONTROL</p><h2>隐私与设置</h2></div>
+        <button class="icon-button" value="cancel" aria-label="关闭">×</button>
+      </header>
+      <div class="setting-row">
+        <div><strong>在小红书显示水母</strong><span>关闭后仍然继续记录，可以从扩展图标恢复。</span></div>
+        <label class="toggle"><input id="setting-visible" type="checkbox"><span></span></label>
+      </div>
+      <div class="setting-row">
+        <div><strong>记录浏览内容</strong><span>关闭后暂停采集，不影响已经保存的记录。</span></div>
+        <label class="toggle"><input id="setting-recording" type="checkbox"><span></span></label>
+      </div>
+      <div class="model-card">
+        <div><strong>Qwen2.5 本地模型</strong><span>当前版本使用本地检索回答。模型包接入将在设备性能验证后开放。</span></div>
+        <span class="model-pill">待验证</span>
+      </div>
+      <div class="danger-zone">
+        <div><strong>立即清除所有数据</strong><span>将删除文章、主题、时间记录与AI对话，无法恢复。</span></div>
+        <button id="clear-data" type="button">清除全部</button>
+      </div>
+    </form>
+  </dialog>
+
+  <template id="empty-template">
+    <div class="empty-state">
+      <img src="../assets/jellyfish-mascot-v1-128.png" alt="" width="64" height="64">
+      <h3>这里还很安静</h3>
+      <p>在网页版小红书中打开一篇内容并有效浏览5秒，记录就会出现在这里。</p>
+    </div>
+  </template>
+
+  <script src="local-ai.js"></script>
+  <script src="report.js"></script>
+</body>
+</html>

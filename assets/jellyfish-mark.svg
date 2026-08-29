@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">注意力水母</title>
+  <desc id="desc">一只半透明的浅蓝色与蓝紫色水母</desc>
+  <defs>
+    <linearGradient id="body" x1="22" y1="16" x2="106" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DDF5FF"/>
+      <stop offset="0.48" stop-color="#A9DFFF"/>
+      <stop offset="1" stop-color="#9C9EEB"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(48 40) rotate(45) scale(62)">
+      <stop stop-color="white" stop-opacity=".86"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#body)" d="M20 61c0-25 19-45 44-45s44 20 44 45c0 10-3 18-9 24-7 7-15 9-35 9s-28-2-35-9c-6-6-9-14-9-24Z"/>
+  <path fill="url(#glow)" d="M27 61c0-21 16-38 37-38 18 0 34 14 37 31-15-8-47-10-74 7Z"/>
+  <path fill="none" stroke="#9097DF" stroke-linecap="round" stroke-width="7" d="M40 87c-4 12 8 15 2 26M57 91c-5 12 7 15 1 25M73 91c5 12-7 15-1 25M89 87c4 12-8 15-2 26" opacity=".66"/>
+</svg>
